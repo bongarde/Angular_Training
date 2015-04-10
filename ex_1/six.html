@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="script/angular.js"></script>
+    <title>Example of angular</title>
+</head>
+<body ng-app="myApp">
+<div ng-controller="myCtrl">
+    <label>Name:</label>
+    <input type="text" ng-model="name" placeholder="Enter Name">
+    <button ng-click="addName()">Add</button>
+    <h1>UnFiltered List</h1>
+    <ol>
+        <li ng-repeat="n in names">{{n}}</li>
+    </ol>
+
+    <h1>Filtered List</h1>
+    <ol>
+        <li ng-repeat="n in names | myFilter">{{n | capFilter}}</li>
+    </ol>
+
+</div>
+
+
+<script>
+    // Filters:
+    var app =angular.module('myApp',[]);
+    app.factory("myService",[function(){
+        return({
+            items:[
+                'Name 1',
+                'Name 2',
+                'Sunday'
+            ],
+            addName: function(name){
+                this.items.push(name);
+            }
+        })
+    }]);
+//$window object, standard windows object as in javascript
+    // we have used filters inside controller
+    app.controller('myCtrl',['$scope','myService','$filter','$window',function($scope,myService,filter,win){
+
+        $scope.addName=function(){
+
+            var test = filter('myFilter')(myService.addName($scope.name));
+            //win.alert(test);
+            myService.addName(test);
+            $scope.name='';
+        };
+        $scope.names=myService.items;
+    }]);
+
+   //This filter will show item which had word day.
+    // sq '['braces are needed only when we need any dependency to pass, else we can remove.
+    app.filter('myFilter',[function(){
+        var filter = function(items){
+            var filtered = [];
+            for(var i=0;i<items.length;i++){
+                var item = items[i];
+                if(item.search(/day*/) != -1){
+                    filtered.push(item);
+                }
+            }
+            return filtered;
+        }
+        return filter;
+    }]);
+
+    //filter to capitalize items.
+    app.filter('capFilter',function(){
+        return function(text){
+            return text.toString().toUpperCase();
+        }
+    });
+
+</script>
+
+</body>
+</html>

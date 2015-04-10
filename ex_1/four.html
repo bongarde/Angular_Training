@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="script/angular.js"></script>
+    <title>Example of angular</title>
+</head>
+<body ng-app="myApp">
+<div ng-controller="myCtrl">
+    <label>Name:</label>
+    <input type="text" ng-model="name" placeholder="Enter Name">
+    <button ng-click="addName()">Add</button>
+    <h1>list1</h1>
+    <ol>
+        <li ng-repeat="n in names">{{n}}</li>
+    </ol>
+</div>
+
+<div ng-controller="myCtrl1">
+    <label>Name:</label>
+    <input type="text" ng-model="name" placeholder="Enter Name">
+    <button ng-click="addName()">Add</button>
+    <h1>list2</h1>
+    <ol>
+        <li ng-repeat="n in names">{{n}}</li>
+    </ol>
+</div>
+
+
+<script>
+    var app =angular.module('myApp',[]);
+    app.factory("myService",[function(){
+        return({
+            items:[
+                'Name 1',
+                'Name 2'
+            ],
+            addName: function(name){
+                this.items.push(name);
+            }
+        })
+    }]);
+
+    app.controller('myCtrl',['$scope','myService',function($scope,myService){
+
+        $scope.addName=function(){
+            myService.addName($scope.name);
+            $scope.name='';
+        };
+        $scope.names=myService.items;
+    }]);
+
+    app.controller('myCtrl1',['$scope','myService',function($scope,myService){
+
+        $scope.addName=function(){
+            myService.addName($scope.name);
+            $scope.name='';
+        };
+        $scope.names=myService.items;
+    }]);
+</script>
+
+</body>
+</html>
