@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap-theme.css" />
+
+
+    <title>Bootstrap Page</title>
+</head>
+<body ng-app="myApp">
+<div class="container">
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a ui-sref="home">Home</a></li>
+                    <li><a ui-sref="about">About</a></li>
+                    <li><a ui-sref="contact">Contact</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+    <div ui-view></div>
+    <div class="starter-template">
+        <h1>Bootstrap starter template</h1>
+        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+    </div>
+
+</div><!-- /.container -->
+
+
+
+<script src="script/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="script/angular-ui-router.js"></script>
+<script>
+    var app =angular.module('myApp',['ui.router']);
+
+    app.config(function($stateProvider,$urlRouterProvider){
+        $urlRouterProvider.otherwise("partials/state1.html");//default state
+        $stateProvider
+                .state('home',{
+                    url:"/home",
+                    templateUrl:"partials/home.html"
+                })
+                .state('about',{
+                    url:"/about",
+                    templateUrl:"partials/about.html"
+                })
+                .state('contact',{
+                    url:"/contact",
+                    templateUrl:"partials/contact.html"
+                })
+
+    });
+
+</script>
+</body>
+</html>
