@@ -4,34 +4,47 @@
     <meta charset="UTF-8">
     <script src="script/angular.js"></script>
     <script src="script/angular-ui-router.js"></script>
-
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="css/bootstrap-theme.css" />
 
 
     <title>Example of angular</title>
 </head>
 <body ng-app="myApp">
+
 <div ng-controller="myCtrl">
+<div class="container" ng-controller="myCtrl">
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 
-    <input type="text" ng-model="name" placeholder="Enter Name">
-    <button ng-click="addName()">Add</button>
-    <h1>Filtered List</h1>
-    <ol>
-        <li ng-repeat="n in names | myFilter">{{n | capFilter}}</li>
-    </ol>
-    <br/>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a ui-sref="home">Home</a></li>
+                    <li> <a ui-sref="state1">Customers</a></li>
+                    <li><a ui-sref="state2">Invoices</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
 
-    <h1>navigation using ui router</h1>
-    <a ui-sref="state1">State1</a> |
-    <a ui-sref="state2">State2</a>
+        </div>
 
-
-
-    <br/>
-    <h2>contents</h2>
-    <div ui-view></div>
-    <h2>footer</h2>
-
+    </nav>
 </div>
+    <div class="container">
+        <div ui-view></div>
+    </div>
+
+
+    </div>
+
+
 
 <script src="script/app.js"></script>
 <script src="script/common/common.module.js"></script>
