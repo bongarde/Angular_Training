@@ -1,12 +1,17 @@
 //angular.module('names',[]);
 angular.module('names').controller('myCtrl',['$scope','nameService','$filter','$window',function($scope,myService,filter,win){
 
-    $scope.addName=function(){
-//pass the name via service. directly adding name not possible
-        var test = filter('myFilter')(myService.addName($scope.name));
-        //win.alert(test);
-        myService.addName(test);
-        $scope.name='';
+    $scope.addCustomer = function(name,addr) {
+        var i = parseInt(myService.items.length)+parseInt("1")
+        win.alert(name);
+            $scope.edit = true;
+            $scope.incomplete = true;
+            $scope.name = '';
+            $scope.addr = '';
+        var count = myService.items.length;
+            $scope.id=i;
+            myService.addCustomer(i,name,addr);
+        win.alert($scope.id);
     };
     $scope.names=myService.items;
 }]);
