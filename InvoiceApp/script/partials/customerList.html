@@ -14,6 +14,7 @@
             <th>Address</th>
             <th>Total Cost</th>
             <th>Add Invoice</th>
+            <th>Cars</th>
         </tr>
         </thead>
         <tbody><tr ng-repeat="n in names">
@@ -25,6 +26,13 @@
                 <button class="btn" >
                     <span><a ui-sref="addInvoice">Add Invoice</a> </span>
                 </button>
+            </td>
+            <td>
+                <ol>
+                    <li ng-repeat="car in n.cars">
+                        {{car.make}}
+                    </li>
+                </ol>
             </td>
         </tr></tbody>
     </table>
