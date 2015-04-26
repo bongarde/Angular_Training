@@ -10,11 +10,17 @@ angular.module('names').factory("nameService",[function(){
         },invoiceList:[
             { invoiceId:'1', customerId:"2", invoiceItems:[{itemName:'aa1', cost: '441'},{itemName:'bb2', cost: '552'}]},
             { invoiceId:'2', customerId:"2", invoiceItems:[{itemName:'aa3', cost: '443'},{itemName:'bb4', cost: '554'}]}
-        ],addItem:function(customerId,ItemName,cost){
-            //this.invoiceItems.push({ ItemName:ItemName, cost: cost, customerId:customerId });
+        ],newInvoice:[],
+        addItem:function(customerId,ItemName,cost){
             var i = parseInt(this.invoiceList.length)+parseInt("1");
-            var invoiceItem = {invoiceId:i, customerId:customerId, invoiceItems:[{itemName:ItemName, cost: cost}]}
-            this.invoiceList.push(invoiceItem);
+            var invoice = [];
+            if(angular.isUndefined(this.newInvoice.invoiceItems)) {
+                invoice = {invoiceId:i, customerId:customerId, invoiceItems:[{itemName:ItemName, cost: cost}]}
+                this.newInvoice.push(invoice);
+            }else{
+                var iItem = {itemName:ItemName, cost: cost};
+                return this.newInvoice.invoiceItems.push(iItem);
+            }
         }
     })
 }]);

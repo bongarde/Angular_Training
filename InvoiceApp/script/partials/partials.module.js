@@ -20,6 +20,18 @@ angular.module('partials',['ui.router']).config(function($stateProvider,$urlRout
                    }
 
                 })
+                var filteredInvoiceList= [];
+                angular.forEach($scope.invoiceList,function(invoices,index){
+
+                    if(invoices.customerId == $scope.customerId){
+
+                        filteredInvoiceList.push(invoices);
+                    }
+
+                })
+
+                $scope.filteredInvoiceList= filteredInvoiceList;
+              // console.log($scope.filteredInvoiceList);
             }
         }).state('Customers.showInvoice',{
             url:"/createInvoice:customerId",
