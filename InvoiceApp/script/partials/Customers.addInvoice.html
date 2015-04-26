@@ -1,1 +1,51 @@
-<h3>Create New Invoice for</h3>
+<h3>Create New Invoice for {{customerName}}</h3>
+<br/>
+<div class="container">
+    <form class="form-inline" role="form" >
+        <div class="form-group">
+            <label class="col-md-2 control-label">Item Name</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" name="ItemName"
+                       ng-model="ItemName" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Cost</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" name="cost"
+                       ng-model="cost" />
+            </div>
+        </div>
+        <input type="hidden" ng-model="customerId" value="{{customerId}}"/>
+        <div class="form-group">
+
+            <button class="btn btn-default" ng-click="addItem(customerId,ItemName,cost)">
+                <span class="glyphicon glyphicon-plus"></span>  Add Item
+            </button>
+        </div>
+    </form>
+    <hr/>
+    <table class="table table-bordered" style="width: 50%">
+        <thead>
+        <tr>
+            <th>Item Name</th>
+            <th>Cost</th>
+        </tr>
+        </thead>
+        <tbody><tr ng-repeat="n1 in fiteredInvoices.invoiceItems">
+            <td>{{n1.itemName}}</td>
+            <td>{{n1.cost}}</td>
+
+        </tr>
+        <tr>
+            <td>Total :</td>
+            <td> {{ getTotal() }}</td>
+        </tr>
+        </tbody>
+    </table>
+        </div>
+    <hr>
+    <button class="btn btn-default" ng-click="addInvoice()">
+        <span class="glyphicon glyphicon-save"></span>Save
+    </button>
+</div>

@@ -12,13 +12,13 @@
             <th>Add Invoice</th>
         </tr>
         </thead>
-        <tbody><tr ng-repeat="n in names">
+        <tbody><tr ng-repeat="n in CustNames">
             <td>{{n.id}}</td>
-            <td> <a ui-sref="Customers.showInvoice">{{n.name}}</a></td>
+            <td> <a ui-sref="Customers.showInvoice({customerId:n.id})">{{n.name}}</a></td>
             <td>{{ n.addr}}</td>
             <td>{{ n.cost}}</td>
             <td>
-                <a ui-sref="Customers.addInvoice">Add Invoice</a>
+                <a ui-sref="Customers.addInvoice({customerId:n.id})">Add Invoice</a>
             </td>
 
         </tr></tbody>
@@ -51,6 +51,8 @@
             <span class="glyphicon glyphicon-save"></span>  Save
         </button>
     </div>
+
+
 
     <div ui-view></div>
 
