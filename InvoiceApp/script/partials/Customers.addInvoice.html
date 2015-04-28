@@ -29,12 +29,16 @@
 
         <hr/>
     <div ng-repeat="n in newInvoice">
+      <div ng-repeat="n1 in n.invoiceItems">
 
-      {{n}}
+          {{n1}}
+      </div>
+
+
 
     </div>
 
-    <button class="btn btn-default" ng-click="addInvoice()">
+    <button class="btn btn-default" ng-click="saveInvoice()">
         <span class="glyphicon glyphicon-save"></span>Save
     </button>
 </div>

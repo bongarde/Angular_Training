@@ -13,14 +13,23 @@ angular.module('names').controller('myCtrl',['$scope','nameService','$filter','$
             myService.addCustomer(i,name,addr);
 
     };
-
+    $scope.invoiceList = myService.invoiceList;
+    $scope.$newInvoice = myService.newInvoice;
     $scope.addItem = function(customerId,ItemName,cost){
 
-        $scope.newInvoice = myService.addItem(customerId,ItemName,cost);
+        var invItems = myService.addItem(customerId,ItemName,cost);
+
+        var newInvoiceId = parseInt(myService.invoiceList.length)+parseInt("1")
+        $scope.newInvoice = { invoiceId:newInvoiceId, customerId:customerId, invoiceItems:invItems};
         console.log($scope.newInvoice);
     };
-   $scope.invoiceList = myService.invoiceList;
-    $scope.$newInvoice = myService.newInvoice;
+
+
+
+    $scope.saveInvoice = function(){
+        myService.saveInvoice();
+    };
+
 
   //  $scope.invoiceItems = myService.invoiceItems;
     $scope.CustNames=myService.items;

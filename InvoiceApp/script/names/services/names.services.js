@@ -1,4 +1,4 @@
-angular.module('names').factory("nameService",[function(){
+angular.module('names').factory("nameService",['$window',function(window){
     return({
         items:[
             {id:1, name:'Hege',  addr:'Pege', cost:'150', cars:[{make:'BMW'},{make:'Merc'}] },
@@ -10,17 +10,18 @@ angular.module('names').factory("nameService",[function(){
         },invoiceList:[
             { invoiceId:'1', customerId:"2", invoiceItems:[{itemName:'aa1', cost: '441'},{itemName:'bb2', cost: '552'}]},
             { invoiceId:'2', customerId:"2", invoiceItems:[{itemName:'aa3', cost: '443'},{itemName:'bb4', cost: '554'}]}
-        ],newInvoice:[],
-        addItem:function(customerId,ItemName,cost){
-            var i = parseInt(this.invoiceList.length)+parseInt("1");
-            var invoice = [];
-            if(angular.isUndefined(this.newInvoice.invoiceItems)) {
-                invoice = {invoiceId:i, customerId:customerId, invoiceItems:[{itemName:ItemName, cost: cost}]}
-                this.newInvoice.push(invoice);
-            }else{
-                var iItem = {itemName:ItemName, cost: cost};
-                return this.newInvoice.invoiceItems.push(iItem);
-            }
+        ],newInvoice:[
+
+        ], invItems:[
+
+        ],addItem:function(customerId,ItemName,cost){
+
+           var item = {itemName:ItemName, cost: cost};
+           this.invItems.push(item);
+            return this.invItems;
+        },saveInvoice:function(){
+            this.invoiceList.push(this.newInvoice);
+            return this.invoiceList;
         }
     })
 }]);
