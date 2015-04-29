@@ -22,34 +22,28 @@ angular.module('names').controller('myCtrl',['$scope','nameService','$filter','$
         var newInvoiceId = parseInt(myService.invoiceList.length)+parseInt("1")
         $scope.newInvoice = { invoiceId:newInvoiceId, customerId:customerId, invoiceItems:invItems};
         console.log($scope.newInvoice);
+        $scope.total = getTotal($scope.newInvoice);
     };
 
 
 
     $scope.saveInvoice = function(){
-        myService.saveInvoice();
+        $scope.invoiceList = myService.saveInvoice();
     };
 
 
   //  $scope.invoiceItems = myService.invoiceItems;
     $scope.CustNames=myService.items;
 
-    $scope.getTotal = function(){
+    getTotal = function(newInvoice){
 
         var total = 0;
-      /* for(var i = 0; i < $scope.invoiceItems.length; i++){
-            var product =  $scope.invoiceItems[i];
-            total += product.cost;
-        }*/
-       /* for(var i = 0; i<$scope.newInvoice.invoiceItems.length;i++){
-            /*var invoiceItems = $scope.newInvoice[i].invoiceItems;
-            for(var j=0; j<invoiceItems.length;j++){
-                win.alert(invoiceItems[j].cost);
-            }*/
+        console.log(newInvoice.invoiceItems.length);
+       for(var i = 0; i < newInvoice.invoiceItems.length; i++){
+            var product =  newInvoice.invoiceItems[i];
+            total = parseInt(total)+parseInt(product.cost);
 
-        //}
-
-
+        }
         return total;
     }
 

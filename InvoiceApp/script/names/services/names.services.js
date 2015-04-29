@@ -8,8 +8,7 @@ angular.module('names').factory("nameService",['$window',function(window){
             var customer = {id:parseInt(this.items.length)+parseInt("1"),name:name,addr:addr,cost:'0'};
             this.items.push(customer);
         },invoiceList:[
-            { invoiceId:'1', customerId:"2", invoiceItems:[{itemName:'aa1', cost: '441'},{itemName:'bb2', cost: '552'}]},
-            { invoiceId:'2', customerId:"2", invoiceItems:[{itemName:'aa3', cost: '443'},{itemName:'bb4', cost: '554'}]}
+
         ],newInvoice:[
 
         ], invItems:[
