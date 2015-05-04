@@ -1,8 +1,7 @@
 angular.module('names').factory("nameService",['$window',function(window){
     return({
         items:[
-            {id:1, name:'Hege',  addr:'Pege', cost:'150', cars:[{make:'BMW'},{make:'Merc'}] },
-            {id:2, name:'Kim',   addr:'Pim', cost:'150', cars:[{make:'BMW1'},{make:'Merc1'}] }
+
         ],addCustomer: function(id,name,addr){
             var i = parseInt(this.items.length)+parseInt("1");
             var customer = {id:parseInt(this.items.length)+parseInt("1"),name:name,addr:addr,cost:'0'};
@@ -18,9 +17,15 @@ angular.module('names').factory("nameService",['$window',function(window){
            var item = {itemName:ItemName, cost: cost};
            this.invItems.push(item);
             return this.invItems;
-        },saveInvoice:function(){
-            this.invoiceList.push(this.newInvoice);
-            return this.invoiceList;
+        },saveInvoice:function(newInvoice,invoiceList){
+            console.log(invoiceList)
+            if(invoiceList.length>0){
+                invoiceList.push(newInvoice);
+            } else{
+                invoiceList.push(newInvoice);
+            }
+            console.log(invoiceList)
+            return invoiceList;
         }
     })
 }]);
